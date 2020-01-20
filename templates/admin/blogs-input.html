@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!-- 
+  博客文章管理的列表
+-->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博客发布</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/semantic-ui/2.4.1/semantic.min.css">
+  <link rel="stylesheet" href="../css//typo.css">
+  <link rel="stylesheet" href="../../static/css/animate.css">
+  <link rel="stylesheet" href="../../static/lib/prism/prism.css">
+  <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css">
+  <link rel="stylesheet" href="../../static/css/me.css">
+  <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.css">
+</head>
+
+<body>
+
+  <!--导航-->
+  <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+      <div class="ui inverted secondary stackable menu">
+        <h2 class="ui teal header item">管理后台</h2>
+        <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+        <a href="#" class=" m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+        <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+        <!-- 头像信息 -->
+        <div class="right aligned menu">
+          <div class="ui m-item m-mobile-hide dropdown item">
+            <div class="text">
+              <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
+              许富荧
+            </div>
+            <i class="icon dropdown"></i>
+            <!-- 弹出的注销和修改密码的功能 -->
+            <div class="menu">
+              <a href="#" class="item">注销</a>
+              <a href="#" class="item">修改密码</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+      <i class="sidebar icon"></i>
+    </a>
+  </nav>
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="menu right">
+        <a href="" class="item active teal">发布</a>
+        <a href="" class="item">列表</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!--中间内容-->
+  <div class="m-container-small m-padded-tb-big">
+    <!-- 博客 -->
+    <div class="ui container">
+      <form action="" method="POST" class="ui form">
+
+        <div class="required field">
+          <div class="ui left labeled input">
+            <!-- compact代表的是大小默认与文字大小一致 -->
+            <div class="ui selection compact teal basic dropdown label">
+              <!-- 代表隐藏域默认就是原创 -->
+              <input type="hidden" name="" value="1">
+              <i class="icon dropdown"></i>
+              <!-- 默认显示的文字 -->
+              <div class="text">原创</div>
+              <div class="menu">
+                <div class="item" data-value="1">原创</div>
+                <div class="item" data-value="2">转载</div>
+                <div class="item" data-value="3">翻译</div>
+              </div>
+            </div>
+            <!-- 追加一个input表单介意与下拉框显示在同一行上 -->
+            <input type="text" name="title" placeholder="标题">
+          </div>
+        </div>
+        <div class="field">
+          <div id="md-content" style="z-index: 1 !important;">
+            <textarea name="content" placeholder="请输入内容" style="display: none;"></textarea>
+          </div>
+
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <!-- action代表让连接变得圆润 -->
+            <div class="ui left action input labeled">
+              <label class="ui teal compact basic label">分类</label>
+              <div class="ui fluid selection dropdown">
+                <input type="hidden" name="type">
+                <i class="icon dropdown"></i>
+                <span class="text default">分类</span>
+                <div class="menu">
+                  <div class="item" data-value="1">错误日志</div>
+                  <div class="item" data-value="2">开发者手册</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left action input labeled">
+              <label class="ui teal basic compact label">标签</label>
+              <!-- multiple代表的是可以多选 search是可以搜索标签-->
+              <div class="ui fluid selection multiple search dropdown">
+                <input type="hidden" name="tag">
+                <i class="icon dropdown"></i>
+                <span class="text default">标签</span>
+                <div class="menu">
+                  <div class="item" data-value="1">java</div>
+                  <div class="item" data-value="2">JavaScript</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left action input labeled">
+            <label class="ui teal basic label">首图</label>
+            <input type="text" placeholder="首图引用地址" class="ui fluid">
+          </div>
+        </div>
+        <!-- 选择是否开启这个功能 -->
+        <div class="fields">
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="recommend" id="recommend" checked class="hidden">
+              <label for="recommend">推荐</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="shareInfo" id="shareInfo" class="hidden">
+              <label for="shareInfo">转载声明</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="appreciation" id="appreciation" class="hidden">
+              <label for="appreciation">赞赏</label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox" name="comment" id="comment" class="hidden">
+              <label for="comment">评论</label>
+            </div>
+          </div>
+        </div>
+        <duv class="ui error message"></duv>
+        <!-- 给他个盒子 这样可以让三个按钮靠有排列 -->
+        <div class="ui right aligned container basic">
+          <button class="ui button" onclick="window.history.go(-1)">返回</button>
+          <button class="ui button secondary">保存</button>
+          <button class="ui teal button">发布</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <br>
+  <!--底部footer-->
+  <footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+      <div class="ui inverted divided stackable grid">
+        <div class="three wide column">
+          <div class="ui inverted link list">
+            <div class="item">
+              <img src="../../static/images/wechat.png" class="ui rounded image" alt="" style="width: 110px">
+            </div>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced ">最新博客</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+            <a href="#" class="item m-text-thin">用户故事（User Story）</a>
+          </div>
+        </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
+          <div class="ui inverted link list">
+            <a href="#" class="item m-text-thin">Email：lirenmi@163.com</a>
+            <a href="#" class="item m-text-thin">QQ：865729312</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header m-text-thin m-text-spaced ">Blog</h4>
+          <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+        </div>
+      </div>
+      <div class="ui inverted section divider"></div>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2016 - 2017 Lirenmi Designed by Lirenmi</p>
+    </div>
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+
+  <script src="../../static/lib/prism/prism.js"></script>
+  <script src="../../static/lib/tocbot/tocbot.min.js"></script>
+  <script src="../../static/lib/qrcode/qrcode.min.js"></script>
+  <script src="../../static/lib/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../../static/lib/editormd/editormd.min.js"></script>
+
+
+
+
+  <script>
+
+    // MarkDown的插件初始化
+    var contentEditor;
+
+    $(function () {
+      contentEditor = editormd("md-content", {
+        width: "100%",
+        height: 640,
+        syncScrolling: "single",
+        path: "../lib/editormd/lib/"
+      });
+    })
+    $('.menu.toggle').click(function () {
+      $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    // 初始化这个头像信息鼠标浮动上去的出现注销和修改密码的信息
+    $('.ui.dropdown').dropdown({
+      on: 'hover'
+    });
+    // 表单验证
+    $('.ui.form').form({
+      fields: {
+        title: {
+          identifier: 'title',
+          rules: [
+            {
+              type: 'empty',
+              prompt: '标题不能为空'
+            }
+          ]
+        },
+        content: {
+          identifier: 'content',
+          rules: [{
+            type: 'empty',
+            prompt: '内容不能为空'
+          }]
+        }
+      }
+    });
+
+  </script>
+</body>
+
+</html>
